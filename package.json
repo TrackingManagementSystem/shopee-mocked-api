@@ -1,0 +1,21 @@
+{
+  "name": "fake-shopee-api",
+  "version": "1.0.0",
+  "description": "A fake API that mimics Shopee API endpoints for testing purposes",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js"
+  },
+  "keywords": ["shopee", "api", "fake", "mock", "vercel"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
+
