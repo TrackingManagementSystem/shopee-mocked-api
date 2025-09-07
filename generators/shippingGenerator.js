@@ -53,9 +53,15 @@ function generatePickupInfo() {
   const shouldBeNull = () => Math.random() < 0.2;
   const addressCount = Math.floor(Math.random() * 3) + 1;
   const addresses = [];
-  
+  const flags = ["default_address", "pickup_address", "return_address", "current_address"];
+
   for (let i = 0; i < addressCount; i++) {
     const addressId = Math.floor(Math.random() * 10000) + 1000;
+
+    // escolher de 1 até todas as flags
+    const shuffled = flags.sort(() => 0.5 - Math.random());
+    const selectedFlags = shuffled.slice(0, Math.floor(Math.random() * flags.length) + 1);
+
     addresses.push({
       address_id: addressId,
       region: ["VN", "TH", "MY", "SG", "PH", "ID"][Math.floor(Math.random() * 6)],
@@ -65,11 +71,11 @@ function generatePickupInfo() {
       town: shouldBeNull() ? null : generateTown(),
       address: generateAddress(),
       zipcode: generateZipcode(),
-      address_flag: ["default_address", "pickup_address", "return_address", "current_address"][Math.floor(Math.random() * 4)],
+      address_flag: selectedFlags, // agora é array
       pickup_time_list: generatePickupTimeList(addressId)
     });
   }
-  
+
   return {
     address_list: addresses
   };
