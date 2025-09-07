@@ -1,21 +1,25 @@
 function generateShippingParameter(orderSn) {
-  const shouldBeNull = () => Math.random() < 0.3;
   const hasPickup = Math.random() < 0.6;
   const hasDropoff = Math.random() < 0.7;
   const hasNonIntegrated = Math.random() < 0.4;
-  
-  const infoNeeded = [];
-  if (hasPickup) infoNeeded.push("address_id", "pickup_time_id");
-  if (hasDropoff) infoNeeded.push("branch_id");
-  if (hasNonIntegrated) infoNeeded.push("tracking_no");
-  if (Math.random() < 0.3) infoNeeded.push("sender_real_name");
-  
+
+  const infoNeeded = {
+    dropoff: [],
+    pickup: [],
+    non_integrated: []
+  };
+
+  if (hasPickup) infoNeeded.pickup.push("address_id", "pickup_time_id");
+  if (hasDropoff) infoNeeded.dropoff.push("branch_id");
+  if (hasNonIntegrated) infoNeeded.non_integrated.push("tracking_no");
+  if (Math.random() < 0.3) infoNeeded.pickup.push("sender_real_name");
+
   return {
     order_sn: orderSn,
     info_needed: infoNeeded,
     dropoff: hasDropoff ? generateDropoffInfo() : null,
     pickup: hasPickup ? generatePickupInfo() : null,
-    "non-integrated": hasNonIntegrated ? generateNonIntegratedInfo() : null
+    non_integrated: hasNonIntegrated ? generateNonIntegratedInfo() : null
   };
 }
 
