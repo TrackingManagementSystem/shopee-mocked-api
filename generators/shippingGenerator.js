@@ -72,7 +72,7 @@ function generatePickupInfo() {
       address: generateAddress(),
       zipcode: generateZipcode(),
       address_flag: selectedFlags, // agora é array
-      pickup_time_list: generatePickupTimeList(addressId)
+      time_slot_list: generatePickupTimeList(addressId)
     });
   }
 
@@ -91,7 +91,7 @@ function generatePickupTimeList(addressId) {
       date: baseTime + (i * 86400), // Each day
       time_text: shouldBeNull() ? null : generateTimeText(),
       pickup_time_id: `${addressId}_${i + 1}`,
-      is_recommended: i === 0 ? "recommended" : null
+      is_recommended: i === 0 ? "['recommended']" : null
     };
     timeSlots.push(timeSlot);
   }
